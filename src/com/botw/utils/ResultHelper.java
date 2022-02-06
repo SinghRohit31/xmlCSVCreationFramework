@@ -43,7 +43,7 @@ public class ResultHelper {
 		return reqID;
 	}
 	
-	public void createRunFolder() {
+	public  void createRunFolder() {
 		String runID= generateRunID();
 		DateFormat date = new SimpleDateFormat("MMM-dd-yyyy HH:mm:ss");
 		String folder = date.format(new Date());
@@ -62,8 +62,20 @@ public class ResultHelper {
 			System.out.println("Exception while creating new file " +file);
 			e.printStackTrace();
 		}
-		
-		
+	}
+	
+	public static void createSubDirectory(String TCID) {
+		String subDirPath=null;
+		File file = new File(Constants.CURRENT_RESULT_PATH + "/" +TCID);
+		Boolean fileCreate= file.mkdir();
+		if (fileCreate) {
+			subDirPath=file.getPath();
+		}else {
+			if (file.exists()) {
+				subDirPath=file.getPath();
+			}
+		}
+		Constants.CURRENT_SUB_DIR=subDirPath+"/";
 	}
 	
 

@@ -42,5 +42,7 @@ public class Constants {
 	public static final String RESULTPATH = PROJECTPATH + "\\Results\\";
 	public static final String RESULTFILE = RESULTPATH + "RESULTS.xlsx";
 	public static final String RESULT_RUNID = RESULTPATH + "RUN_SEQ.txt";
+	public static String CURRENT_RESULT_PATH;
+	public static String CURRENT_SUB_DIR;
 
 }
