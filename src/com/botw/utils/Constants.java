@@ -42,7 +42,12 @@ public class Constants {
 	public static final String RESULTPATH = PROJECTPATH + "\\Results\\";
 	public static final String RESULTFILE = RESULTPATH + "RESULTS.xlsx";
 	public static final String RESULT_RUNID = RESULTPATH + "RUN_SEQ.txt";
+	public static final String UPLOAD_FILE_GENERATION_PATH=PROJECTPATH + "\\Excels\\UploadFileGeneration.xlsx";
+	public static final String CSVCHKPR_REF_PATH=PROJECTPATH+"\\Uploads\\CSVCHKPRRef.txt";
+	public static final String CSVCHKPR_BASE_PATH=PROJECTPATH+"\\Uploads\\BASECSVCHKPR.txt";
 	public static String CURRENT_RESULT_PATH;
 	public static String CURRENT_SUB_DIR;
+	public static final String SEQFILEPATH=PROJECTPATH+"\\Uploads"+"SEQ.txt";
+	public static final String SETENVFILE_PATH=PROJECTPATH+"Excels\\SetUp_"+env+".xlsx";
 
 }

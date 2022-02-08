@@ -1,0 +1,1 @@
+Rcrdtype,InitPytm,ErpID,PaymentRef,CHKPRDate,DbtrNm,CoutryCode,BICCode,DbtrName,Address

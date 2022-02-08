@@ -2,6 +2,7 @@ package com.botw.testcase;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -20,10 +21,11 @@ public class SchedulerRead {
 	XSSFCell cell;
 
 	public static int currentTC, TCStart, icounter, rootSkip;
-	public static String TCDesc, Flag, TCID, SeqNo, solutionName, currentSolution;
+	public static String TCDesc, Flag, TCID, SeqNo, solutionName, currentSolution,SNO;
 	public static int schedulerCount = 0;
 	public static String rootSkipFlag = "";
 	public static String rootSkipTCCount = "";
+	public static int noOfFileRecords=0;
 
 	public void readTC(String TestTypes) {
 		try {
@@ -55,7 +57,7 @@ public class SchedulerRead {
 					if (Flag.toUpperCase().equalsIgnoreCase("Y")) {
 						schedulerCount++;
 						TCID = sheet.getRow(i + 1).getCell(2).getStringCellValue().trim();
-						String SNO = sheet.getRow(i + 1).getCell(3).getStringCellValue().trim();
+						SNO= sheet.getRow(i + 1).getCell(3).getStringCellValue().trim();
 						SeqNo = SNO;
 						String menu = sheet.getRow(i + 1).getCell(4).getStringCellValue().trim();
 						solutionName = sheet.getRow(i + 1).getCell(5).getStringCellValue().trim();
@@ -121,10 +123,6 @@ public class SchedulerRead {
 						break;	
 					}
 					
-					
-					
-					
-					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -135,6 +133,72 @@ public class SchedulerRead {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public static void File_Generation(String TCID,String SNO) throws IOException {
+		String uploadFilePath=Constants.UPLOAD_FILE_GENERATION_PATH;
+		
+		
+		File file = new File(uploadFilePath);
+		FileInputStream uploadInput= new FileInputStream(file);
+		XSSFWorkbook uploadWb = new XSSFWorkbook(uploadInput);
+		XSSFSheet uploadSheet= uploadWb.getSheetAt(0);
+		
+		
+		String fileName,allData,FileType = null,outFileName,Info=null;
+		int NoOfRecs,rowNumber=0;
+		Boolean rowFound=false;
+		
+		int rowCount=uploadSheet.getLastRowNum();
+		
+		
+		for (int i = 1; i <= rowCount; i++) {
+			XSSFRow row = uploadSheet.getRow(i);
+			String testcaseName=row.getCell(0).getStringCellValue();
+			String serNo = row.getCell(1).getStringCellValue();
+			
+			if (testcaseName.toUpperCase().equals(TCID.toUpperCase()) && serNo.toUpperCase().equals(SNO.toUpperCase())) {
+				rowFound=true;
+				rowNumber=i;
+				
+				System.out.println("INFO ----- The upload File Generation data found at row :  " +i);
+				try {
+					fileName=row.getCell(2).getStringCellValue();
+				} catch (Exception e) {
+					fileName="";
+				}
+				
+				NoOfRecs=(int) row.getCell(3).getNumericCellValue();
+				noOfFileRecords=NoOfRecs;
+				
+				FileType=row.getCell(4).getStringCellValue();
+				allData=row.getCell(5).getStringCellValue();
+				break;
+			}
+		}
+		
+		if (FileType.toLowerCase().equals("CSV") || FileType.toLowerCase().equals("CSVCHKPR")) {
+			
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 
 }
