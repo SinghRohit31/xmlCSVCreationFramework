@@ -49,5 +49,7 @@ public class Constants {
 	public static String CURRENT_SUB_DIR;
 	public static final String SEQFILEPATH=PROJECTPATH+"\\Uploads"+"SEQ.txt";
 	public static final String SETENVFILE_PATH=PROJECTPATH+"Excels\\SetUp_"+env+".xlsx";
+	public static final String TEMP_PATH=PROJECTPATH+"\\TEMP\\";
+	public static final String DBSHEET=PROJECTPATH +"\\DBExcels\\DBSetup_ "+env+ ".xlsx";
 
 }
